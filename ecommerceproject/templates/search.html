@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+        A variety of products that you desire are available at reasonable price
+{% endblock %}
+
+{% block title %}
+        Search - Zuper Mart
+{% endblock %}
+
+{% block body %}
+
+<div>
+        <p class="text-center my_search_text"> Search Results for <b>"{{query}}"</b></p>
+</div>
+<div class="container">
+    <div class="row mx-auto">
+        {% for product in products %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4 d-flex align-items-stretch">
+            <div class="card text-center" style="min-width:18rem;">
+               <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}"> </a>
+                <div class="card-body">
+                    <h4 class="text-center my_title"><b>{{product.name}}</b></h4>
+                    <p class="text-center">Rs.{{product.price}}</p>
+                </div>
+             </div>
+           </div>
+             {% empty %}
+                <div class="=mx-auto">
+                        <p style="text-align:center;"> No results found </p>
+                </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
